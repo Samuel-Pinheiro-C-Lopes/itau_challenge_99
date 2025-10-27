@@ -30,4 +30,8 @@ public class TransactionRepository {
 	public Boolean save(final Transaction transaction) {
 		return this.transactions.add(transaction);
 	}
+	
+	public void deleteAll() {
+		this.transactions.clear();
+	}
 }
