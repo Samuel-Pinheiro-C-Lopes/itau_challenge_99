@@ -1,4 +1,4 @@
-package io.github.samuel_pinheiro_c_lopes.itau_challenge_99.controllers;
+package io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.dtos.TransactionRequestDTO;
-import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.services.TransactionService;
+import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.dtos.TransactionRequestDTO;
+import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.services.TransactionService;
 
 @RestController
 @RequestMapping("/transacao")

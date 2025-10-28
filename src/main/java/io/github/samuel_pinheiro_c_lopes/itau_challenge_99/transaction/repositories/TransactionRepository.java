@@ -1,4 +1,4 @@
-package io.github.samuel_pinheiro_c_lopes.itau_challenge_99.repositories;
+package io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.repositories;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.models.Transaction;
+import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.models.Transaction;
 
 @Service
 public class TransactionRepository {
