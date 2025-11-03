@@ -21,12 +21,22 @@ public class TransactionLogService {
 		this.transactionLogRepository = transactionLogRepository;
 	}
 	
+	public void save(final List<Transaction> transactions, final OperationType operationType) {
+		for (final Transaction transaction : transactions)
+			this.save(transaction, operationType);
+	}
+	
 	public void save(final Transaction transaction, final OperationType operationType) {
 		this.transactionLogRepository.save(new TransactionLog(transaction, OffsetDateTime.now(), operationType));
 	}
 	
 	public List<TransactionLogResponseDTO> findAll() {
-		return this.transactionLogRepository.findAll().stream().map(TransactionLogResponseDTO::new).toList();
+		List<TransactionLogResponseDTO> stats = this.transactionLogRepository.findAll()
+				.stream()
+				.map(TransactionLogResponseDTO::new)
+				.toList();
+		
+		return stats;
 	}
 	
 	public void deleteAll() {
