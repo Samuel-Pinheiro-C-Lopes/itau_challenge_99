@@ -41,15 +41,12 @@ class TransactionStatisticsServiceTest {
     @Test
     @DisplayName("Should calculate correct statistics from recent transactions")
     void testGetStatistics_ComputesCorrectValues() {
-        // Arrange
         when(transactionRepository.findByDateTimeGreaterThan(any(OffsetDateTime.class)))
                 .thenReturn(List.of(t1, t2, t3));
 
-        // Act
         TransactionStatisticsResponseDTO result =
                 transactionStatisticsService.getStatistics(OffsetDateTime.now().minusMinutes(1));
 
-        // Assert
         assertThat(result).isNotNull();
         assertThat(result.sum()).isEqualTo(1000.0);
         assertThat(result.count()).isEqualTo(3L);
@@ -61,15 +58,12 @@ class TransactionStatisticsServiceTest {
     @Test
     @DisplayName("Should return empty statistics when no transactions are found")
     void testGetStatistics_NoTransactions() {
-        // Arrange
         when(transactionRepository.findByDateTimeGreaterThan(any(OffsetDateTime.class)))
                 .thenReturn(List.of());
 
-        // Act
         TransactionStatisticsResponseDTO result =
                 transactionStatisticsService.getStatistics(OffsetDateTime.now().minusMinutes(1));
 
-        // Assert
         assertThat(result).isNotNull();
         assertThat(result.count()).isEqualTo(0L);
         assertThat(result.sum()).isEqualTo(0.0);

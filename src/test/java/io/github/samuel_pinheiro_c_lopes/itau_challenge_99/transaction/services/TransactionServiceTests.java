@@ -7,13 +7,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.log.services.TransactionLogService;
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.dtos.TransactionRequestDTO;
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.models.Transaction;
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.repositories.TransactionRepository;
 
 import java.time.OffsetDateTime;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -21,6 +21,8 @@ import static org.mockito.Mockito.*;
 class TransactionServiceTest {
     @Mock
     private TransactionRepository transactionRepository;
+    @Mock
+    private TransactionLogService transactionLogService;
     @InjectMocks
     private TransactionService transactionService;
 
@@ -31,9 +33,8 @@ class TransactionServiceTest {
 
         when(transactionRepository.save(any(Transaction.class))).thenReturn(true);
 
-        Boolean result = transactionService.save(request);
+        transactionService.save(request);
 
-        assertThat(result).isTrue();
         verify(transactionRepository, times(1)).save(any(Transaction.class));
     }
 
@@ -44,9 +45,8 @@ class TransactionServiceTest {
 
         when(transactionRepository.save(any(Transaction.class))).thenReturn(false);
 
-        Boolean result = transactionService.save(request);
+        transactionService.save(request);
 
-        assertThat(result).isFalse();
         verify(transactionRepository, times(1)).save(any(Transaction.class));
     }
 

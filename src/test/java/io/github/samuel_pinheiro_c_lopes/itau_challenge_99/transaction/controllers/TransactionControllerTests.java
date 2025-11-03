@@ -46,7 +46,7 @@ class TransactionControllerTest {
     @Test
     @DisplayName("POST /transacao should return 201 Created when transaction is saved successfully")
     void testPostTransaction_ReturnsCreated() throws Exception {
-    	when(transactionService.save(any(TransactionRequestDTO.class))).thenReturn(Boolean.TRUE);
+    	doNothing().when(transactionService).save(any(TransactionRequestDTO.class));
 
         mockMvc.perform(post("/transacao")
                         .contentType(MediaType.APPLICATION_JSON)
