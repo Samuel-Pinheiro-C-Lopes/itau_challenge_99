@@ -1,29 +1,32 @@
 package io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.repositories;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Repository;
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.models.Transaction;
 
-@Service
+@Repository
 public class TransactionRepository {
 	private final List<Transaction> transactions;
 	
 	public TransactionRepository() {
-		this.transactions = new ArrayList<Transaction>();
+		this.transactions = new Vector<Transaction>();
 	}
 	
 	public List<Transaction> findAll() {
-		return this.transactions;
+		return this.transactions
+				.stream()
+				.map(t -> t.clone())
+				.toList();
 	}
 	
 	public List<Transaction> findByDateTimeGreaterThan(final OffsetDateTime dateTime) {
 		return this.transactions
 				.stream()
 				.filter(t -> t.dateTime().isAfter(dateTime))
+				.map(t -> t.clone())
 				.toList();
 	}
 	

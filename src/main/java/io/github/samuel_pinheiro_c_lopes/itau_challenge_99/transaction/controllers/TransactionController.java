@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.dtos.TransactionRequestDTO;
 import io.github.samuel_pinheiro_c_lopes.itau_challenge_99.transaction.services.TransactionService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/transacao")
@@ -22,7 +23,7 @@ public class TransactionController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> post(@RequestBody final TransactionRequestDTO transactionRequest) {
+	public ResponseEntity<Void> post(@RequestBody @Valid final TransactionRequestDTO transactionRequest) {
 		this.transactionService.save(transactionRequest);
 		return ResponseEntity.status(201).build();
 	}
